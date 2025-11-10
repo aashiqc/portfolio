@@ -29,6 +29,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {/* Manifest for PWA */}
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Favicon */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="192x192" href="/icon-192.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="512x512" href="/icon-512.svg" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://ashiq.dev" />
+
         <Meta />
         <Links />
       </head>
