@@ -29,17 +29,20 @@ export default function Hero() {
   };
 
   const floatingAnimation = {
-    y: [0, -20, 0],
+    y: [0, -15, 0],
     transition: {
-      duration: 3,
+      duration: 4,
       repeat: Infinity,
       ease: "easeInOut" as const,
     },
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Chaos Particle Background */}
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ backgroundColor: "var(--color-primary-bg)" }}
+    >
+      {/* Topographic Contour Background */}
       <ChaosBackground />
 
       {/* Content */}
@@ -47,23 +50,36 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32"
       >
         {/* Badge */}
         <motion.div variants={itemVariants} className="flex justify-center mb-8">
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+            style={{
+              backgroundColor: "var(--color-primary-text-05)",
+              border: "1px solid var(--color-primary-text-10)",
+            }}
             whileHover={{ scale: 1.05 }}
           >
-            <Sparkles className="w-4 h-4 text-white" />
-            <span className="text-sm text-white/80">Available for work</span>
+            <Sparkles
+              className="w-4 h-4"
+              style={{ color: "var(--color-secondary-yellow)" }}
+            />
+            <span
+              className="text-sm font-medium"
+              style={{ color: "var(--color-primary-text-80)" }}
+            >
+              Hooray! You found me
+            </span>
           </motion.div>
         </motion.div>
 
         {/* Main Heading */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center"
+          style={{ color: "var(--color-heading)" }}
         >
           Hi, I'm{" "}
           <motion.span
@@ -73,79 +89,41 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <span
-              className="relative inline-block bg-clip-text text-transparent"
+              className="relative inline-block"
               style={{
-                backgroundImage: `
-                  linear-gradient(
-                    90deg,
-                    #667eea 0%,
-                    #764ba2 15%,
-                    #f093fb 30%,
-                    #4facfe 45%,
-                    #00f2fe 60%,
-                    #43e97b 75%,
-                    #38f9d7 90%,
-                    #667eea 100%
-                  )
-                `,
-                backgroundSize: "300% 100%",
-                animation: "liquidFlow 4s ease-in-out infinite",
-                filter: "brightness(1.2) contrast(1.1)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                color: "var(--color-secondary-yellow)",
+                textShadow: "0 0 40px rgba(178, 199, 59, 0.3)",
               }}
             >
               Ashiq
             </span>
-
-            {/* Animated Style Tag */}
-            <style dangerouslySetInnerHTML={{
-              __html: `
-                @keyframes liquidFlow {
-                  0%, 100% {
-                    background-position: 0% 50%;
-                    filter: brightness(1.2) contrast(1.1) hue-rotate(0deg);
-                  }
-                  25% {
-                    background-position: 50% 50%;
-                    filter: brightness(1.3) contrast(1.15) hue-rotate(10deg);
-                  }
-                  50% {
-                    background-position: 100% 50%;
-                    filter: brightness(1.4) contrast(1.2) hue-rotate(0deg);
-                  }
-                  75% {
-                    background-position: 50% 50%;
-                    filter: brightness(1.3) contrast(1.15) hue-rotate(-10deg);
-                  }
-                }
-              `
-            }} />
           </motion.span>
         </motion.h1>
 
-        {/* Subtitle with Typing Effect */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <motion.h2 className="text-2xl sm:text-3xl md:text-4xl text-white/80 font-medium mb-4">
+        {/* Subtitle */}
+        <motion.div variants={itemVariants} className="mb-8 text-center">
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6"
+            style={{ color: "var(--color-primary-text)" }}
+          >
             Software Engineer
           </motion.h2>
-          <motion.p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
-            I craft beautiful, functional, and user-centric digital experiences
-            that make a difference. Specialized in React, Node.js, and modern web
-            technologies.
+          <motion.p
+            className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed mb-4"
+            style={{ color: "var(--color-primary-text-80)" }}
+          >
+            Product Developer focused on building things that matter. From complex backend systems to seamless user experiences, I deliver technical solutions that drive real-world impact.
           </motion.p>
+          {/* <motion.p
+            className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
+            style={{ color: "var(--color-primary-text-60)" }}
+          >
+            From complex backend systems to seamless user experiences,
+            I deliver technical solutions that drive real-world impact.
+          </motion.p> */}
         </motion.div>
 
-        {/* Floating Icon */}
-        <motion.div
-          variants={itemVariants}
-          animate={floatingAnimation}
-          className="flex justify-center mb-12"
-        >
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <Code2 className="w-12 h-12 text-white" />
-          </div>
-        </motion.div>
+  
 
         {/* CTA Buttons */}
         <motion.div
@@ -156,25 +134,33 @@ export default function Hero() {
           <motion.a
             href="/cv.pdf"
             download
-            className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden"
-            whileHover={{ scale: 1.05 }}
+            className="group relative inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-full overflow-hidden"
+            style={{
+              backgroundColor: "var(--color-accent)",
+              color: "var(--color-primary-text)",
+            }}
+            whileHover={{
+              scale: 1.05,
+            }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-gray-100 to-white"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.5 }}
-            />
             <Download className="w-5 h-5 relative z-10" />
             <span className="relative z-10">Download CV</span>
           </motion.a>
 
           {/* View Work Button */}
           <motion.a
-            href="#projects"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-transparent text-white font-semibold rounded-full border-2 border-white/20 hover:border-white/40 transition-colors"
-            whileHover={{ scale: 1.05 }}
+            href="/coming-soon"
+            className="group inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-full border-2 transition-colors"
+            style={{
+              backgroundColor: "transparent",
+              color: "var(--color-primary-text)",
+              borderColor: "var(--color-primary-text-20)",
+            }}
+            whileHover={{
+              scale: 1.05,
+              borderColor: "var(--color-primary-text-40)",
+            }}
             whileTap={{ scale: 0.95 }}
           >
             <span>View My Work</span>
@@ -195,12 +181,14 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2"
+            className="w-6 h-10 rounded-full border-2 flex justify-center pt-2"
+            style={{ borderColor: "var(--color-primary-text-20)" }}
           >
             <motion.div
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-white rounded-full"
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: "var(--color-primary-text)" }}
             />
           </motion.div>
         </motion.div>

@@ -1,24 +1,37 @@
 {
-  "name": "Ashiq - Software Engineer Portfolio",
-  "short_name": "Ashiq Portfolio",
-  "description": "Muhammed Ashiq (Ashiq C) - Professional Software Engineer specializing in web development",
+  "name": "Ashiq C - Software Engineer | Building Innovative Products",
+  "short_name": "Ashiq C",
+  "description": "Ashiq C - Software Engineer from Kerala, India. Specializing in React, Node.js, and modern web technologies. Building innovative products with cutting-edge solutions.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#FCFCFA",
+  "theme_color": "#FCFCFA",
   "orientation": "portrait-primary",
+  "categories": ["portfolio", "technology", "software"],
+  "lang": "en-US",
+  "dir": "ltr",
   "icons": [
     {
-      "src": "/icon-192.svg",
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.svg",
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }

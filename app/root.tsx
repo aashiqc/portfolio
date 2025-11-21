@@ -9,19 +9,10 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import PageLoader from "./components/PageLoader";
+import NavigationLoader from "./components/NavigationLoader";
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap",
-  },
-];
+export const links: Route.LinksFunction = () => [];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -34,10 +25,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <link rel="manifest" href="/manifest.json" />
 
         {/* Favicon */}
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
-        <link rel="icon" type="image/svg+xml" sizes="192x192" href="/icon-192.svg" />
-        <link rel="icon" type="image/svg+xml" sizes="512x512" href="/icon-512.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
         {/* Canonical URL */}
         <link rel="canonical" href="https://ashiq.dev" />
@@ -46,6 +39,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <PageLoader />
+        <NavigationLoader />
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -75,11 +70,30 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main
+      className="pt-16 p-4 container mx-auto min-h-screen"
+      style={{ backgroundColor: "var(--color-primary-bg)" }}
+    >
+      <h1
+        className="text-4xl font-bold mb-4"
+        style={{ color: "var(--color-heading)" }}
+      >
+        {message}
+      </h1>
+      <p
+        className="text-lg mb-4"
+        style={{ color: "var(--color-primary-text-80)" }}
+      >
+        {details}
+      </p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre
+          className="w-full p-4 overflow-x-auto rounded-lg"
+          style={{
+            backgroundColor: "var(--color-primary-text-05)",
+            color: "var(--color-primary-text)",
+          }}
+        >
           <code>{stack}</code>
         </pre>
       )}
