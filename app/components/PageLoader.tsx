@@ -33,21 +33,15 @@ export default function PageLoader() {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <h1
+              <motion.h1
                 className="text-4xl md:text-6xl font-bold"
                 style={{ color: "var(--color-heading)" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
               >
-                &lt;
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                  style={{ color: "var(--color-secondary-yellow)" }}
-                >
-                  Ashiq
-                </motion.span>
-                &nbsp;/&gt;
-              </h1>
+                Ashiq
+              </motion.h1>
             </motion.div>
 
             {/* Loading Bar */}
