@@ -1,82 +1,54 @@
 @import "tailwindcss";
 
 /* ================================
-   Design System - Color Variables
-   ================================
-   Change these values to update the entire color palette
-*/
+   Hedgehog OS (PostHog Theme)
+   ================================ */
 :root {
-  /* Custom Cursor - The Stealth */
-  --cursor-stealth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cfilter id='shadow' color-interpolation-filters='sRGB'%3E%3CfeDropShadow dx='2' dy='2' stdDeviation='1.5' flood-opacity='0.3'/%3E%3C/filter%3E%3Cpath fill='%23D1FF03' stroke='black' stroke-width='2' stroke-linejoin='round' d='M 2 2 L 22 8 L 12 12 L 8 22 Z' filter='url(%23shadow)'/%3E%3C/svg%3E");
+  /* Core Palette - Warm Theme & Brutalist Ink */
+  --color-paper: #F3F1E8;
+  --color-paper-dark: #E4E2D5;
+  --color-card: #FFFFFF;
 
-  /* Primary Colors */
-  --color-primary-text: #282C20;
-  --color-primary-bg: #FCFCFA;
+  --color-ink-primary: #18181B;
+  /* Nearly Black */
+  --color-ink-secondary: #52525B;
+  /* Dark Grey */
 
-  /* Secondary Colors */
-  --color-secondary-bg: #282C20;
-  --color-secondary-yellow: #B2C73A;
+  /* Accents - Extended PostHog Palette */
+  --color-orange: #F54E00;
+  --color-yellow: #FFD368;
+  --color-blue: #2D7FF9;
+  --color-tan: #F3F1E8;
+  --color-salmon: #E4A672;
+  --color-teal: #42D7D2;
+  --color-purple: #B626FF;
 
-  /* Accent Colors */
-  --color-accent: #D1FF03;
-  --color-accent-hover: #c4f000;
+  /* Borders & Shadows */
+  --color-border: #18181B;
+  --color-border-light: #E4E4E7;
 
-  /* Headings */
-  --color-heading: #111112;
+  /* Typography */
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* Neutral Colors */
-  --color-white: #FFFFFF;
-  --color-black: #000000;
-
-  /* Opacity variants */
-  --color-primary-text-80: rgba(40, 44, 32, 0.8);
-  --color-primary-text-60: rgba(40, 44, 32, 0.6);
-  --color-primary-text-40: rgba(40, 44, 32, 0.4);
-  --color-primary-text-20: rgba(40, 44, 32, 0.2);
-  --color-primary-text-10: rgba(40, 44, 32, 0.1);
-  --color-primary-text-05: rgba(40, 44, 32, 0.05);
-
-  --color-primary-bg-80: rgba(252, 252, 250, 0.8);
-  --color-primary-bg-60: rgba(252, 252, 250, 0.6);
-
-  /* Contour line colors for background */
-  --color-contour-1: rgba(178, 199, 59, 0.15);
-  --color-contour-2: rgba(209, 255, 3, 0.1);
-  --color-contour-3: rgba(40, 44, 32, 0.08);
-
-  /* Shadows - minimal for performance */
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-xl: none;
-
-  /* Border radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-full: 9999px;
+  /* Shadows - Brutalist/Offset */
+  --shadow-button: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-button-hover: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-normal: 300ms ease;
-  --transition-slow: 500ms ease;
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Extend Tailwind theme with custom colors */
 @theme {
-  --font-sans: "Courier New", "Courier", monospace,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-paper: var(--color-paper);
+  --color-paper-dark: var(--color-paper-dark);
+  --color-ink: var(--color-ink-primary);
+  --color-orange: var(--color-orange);
 
-  /* Custom colors for Tailwind */
-  --color-primary: var(--color-primary-text);
-  --color-primary-bg: var(--color-primary-bg);
-  --color-secondary: var(--color-secondary-bg);
-  --color-accent: var(--color-accent);
-  --color-accent-hover: var(--color-accent-hover);
-  --color-heading: var(--color-heading);
-  --color-yellow: var(--color-secondary-yellow);
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
 /* ================================
@@ -84,163 +56,52 @@
    ================================ */
 html,
 body {
-  background-color: var(--color-primary-bg);
-  color: var(--color-primary-text);
+  background-color: var(--color-paper);
+  color: var(--color-ink-primary);
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  cursor: var(--cursor-stealth) 2 2, auto;
 }
 
-* {
-  box-sizing: border-box;
-  cursor: var(--cursor-stealth) 2 2, auto;
-}
-
-/* Apply stealth cursor to interactive elements */
-a,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-select,
-textarea,
-[role="button"],
-.cursor-pointer {
-  cursor: var(--cursor-stealth) 2 2, pointer;
-}
-
-/* Text input elements */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="url"],
-input[type="number"] {
-  cursor: var(--cursor-stealth) 2 2, text;
-}
-
-/* ================================
-   Typography
-   ================================ */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-heading);
-  font-weight: 700;
-}
-
-/* ================================
-   Selection
-   ================================ */
 ::selection {
-  background-color: var(--color-accent);
-  color: var(--color-primary-text);
+  background-color: var(--color-orange);
+  color: white;
 }
 
 /* ================================
-   Scrollbar (optional customization)
+   Utilities
    ================================ */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.hog-button {
+  background: white;
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-button);
+  transition: all 0.1s ease;
+  font-weight: 600;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-primary-bg);
+.hog-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-button-hover);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary-text-20);
-  border-radius: var(--radius-full);
+.hog-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-text-40);
+.hog-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
 }
 
-/* ================================
-   Utility Classes
-   ================================ */
-.text-primary {
-  color: var(--color-primary-text);
-}
-
-.text-heading {
-  color: var(--color-heading);
-}
-
-.text-accent {
-  color: var(--color-accent);
-}
-
-.text-yellow {
-  color: var(--color-secondary-yellow);
-}
-
-.bg-primary {
-  background-color: var(--color-primary-bg);
-}
-
-.bg-secondary {
-  background-color: var(--color-secondary-bg);
-}
-
-.bg-accent {
-  background-color: var(--color-accent);
-}
-
-.btn-accent {
-  background-color: var(--color-accent);
-  color: var(--color-primary-text);
-  transition: all var(--transition-normal);
-}
-
-.btn-accent:hover {
-  background-color: var(--color-accent-hover);
-}
-
-/* ================================
-   Animations
-   ================================ */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 3s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+/* Specific PostHog-style text highlights */
+.highlight-orange {
+  color: var(--color-orange);
+  font-weight: 700;
 }

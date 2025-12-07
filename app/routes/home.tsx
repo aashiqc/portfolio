@@ -1,6 +1,5 @@
 import type { Route } from "./+types/home";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
+import MacOSDesktop from "../components/MacOSDesktop";
 
 export function meta({}: Route.MetaArgs) {
   const title = "Ashiq C - Software Engineer | Building Innovative Products";
@@ -71,10 +70,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-    </>
-  );
+  return <MacOSDesktop />;
 }
