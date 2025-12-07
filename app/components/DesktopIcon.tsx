@@ -1,11 +1,6 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
-import { Draggable } from "gsap/Draggable";
-
-// Register GSAP plugin
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(Draggable);
-}
+// Draggable is now imported dynamically to avoid SSR crashes
 
 interface DesktopIconProps {
   id: string;
@@ -18,26 +13,38 @@ export default function DesktopIcon({ id, label, iconUrl, onClick }: DesktopIcon
   const iconRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!iconRef.current) return;
+    let draggableInstance: globalThis.Draggable[] | undefined;
 
-    // Make icon draggable
-    const draggableInstance = Draggable.create(iconRef.current, {
-      type: "x,y",
-      bounds: "body",
-      inertia: true,
-      onClick: function () {
-        onClick(); // Trigger click on drag release/click
-      },
-      onDragStart: function () {
-        gsap.to(iconRef.current, { scale: 1.1, duration: 0.2 });
-      },
-      onDragEnd: function () {
-        gsap.to(iconRef.current, { scale: 1, duration: 0.2 });
-      }
-    });
+    const initDraggable = async () => {
+      if (!iconRef.current) return;
+
+      // Dynamic import to prevent SSR crash
+      const { Draggable } = await import("gsap/Draggable");
+      gsap.registerPlugin(Draggable);
+
+      // Make icon draggable
+      draggableInstance = Draggable.create(iconRef.current, {
+        type: "x,y",
+        bounds: "body",
+        inertia: true,
+        onClick: function () {
+          onClick();
+        },
+        onDragStart: function () {
+          gsap.to(iconRef.current, { scale: 1.1, duration: 0.2 });
+        },
+        onDragEnd: function () {
+          gsap.to(iconRef.current, { scale: 1, duration: 0.2 });
+        }
+      });
+    };
+
+    initDraggable();
 
     return () => {
-      draggableInstance[0].kill();
+      if (draggableInstance && draggableInstance[0]) {
+        draggableInstance[0].kill();
+      }
     };
   }, [onClick]);
 
